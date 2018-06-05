@@ -391,6 +391,7 @@ def helpmessage():
                     "╠ " + key + "SearchMusic 「Search」" + "\n" + \
                     "╠ " + key + "SearchLyric 「Search」" + "\n" + \
                     "╠ " + key + "SearchImage 「Search」" + "\n" + \
+					"╠ " + key + "Ulti「Mention」" + "\n" + \
                     "╚══[ Alipbanana on instagram ]"
     return helpMessage
 
@@ -1376,6 +1377,21 @@ def clientBot(op):
                                         client.sendImageWithURL(to, str(path))
                                 except Exception as error:
                                     logError(error)
+									
+							elif ("Ulti " in msg.text):
+									targets = []
+									key = eval(msg.contentMetadata["MENTION"])
+									key["MENTIONEES"] [0] ["M"]
+								for x in key["MENTIONEES"]:
+									targets.append(x["M"])
+								for target in targets:
+								try:
+									cl.kickoutFromGroup(msg.to,[target])
+									cl.inviteIntoGroup(msg.to,[target])
+									cl.cancelGroupInvitation(msg.to,[target])
+							except:
+									cl.sendText(msg.to,"Error")
+							
                             elif cmd.startswith("searchmusic "):
                                 sep = msg.text.split(" ")
                                 query = msg.text.replace(sep[0] + " ","")
